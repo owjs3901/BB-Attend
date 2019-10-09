@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+	<TextView
+			android:id="@+id/header"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:gravity="center"
+			android:text="설 정"
+			android:textSize="32dp" />
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@+id/footer"
+			android:layout_below="@+id/header"
+			android:orientation="vertical">
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/setting_box"
+				android:gravity="center_vertical">
+
+			<ImageView
+					android:layout_width="42dp"
+					android:layout_height="37dp"
+					android:layout_marginLeft="19dp"
+					android:src="@drawable/user_icon" />
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="19dp"
+					android:text="회원정보"
+					android:textSize="20dp" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/setting_box"
+				android:gravity="center_vertical">
+
+			<ImageView
+					android:layout_width="42dp"
+					android:layout_height="37dp"
+					android:layout_marginLeft="19dp"
+					android:src="@drawable/password_icon" />
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="19dp"
+					android:text="비밀번호 변경"
+					android:textSize="20dp" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:id="@+id/register"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/setting_box"
+				android:gravity="center_vertical">
+
+			<ImageView
+					android:layout_width="42dp"
+					android:layout_height="37dp"
+					android:layout_marginLeft="19dp"
+					android:src="@drawable/fingerprint_icon" />
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="19dp"
+					android:text="생체정보 등록 및 추가"
+					android:textSize="20dp" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/setting_box"
+				android:gravity="center_vertical">
+
+			<ImageView
+					android:layout_width="42dp"
+					android:layout_height="37dp"
+					android:layout_marginLeft="19dp"
+					android:src="@drawable/card_icon" />
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="19dp"
+					android:text="카드 등록"
+					android:textSize="20dp" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:id="@+id/set2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/setting_box"
+				android:gravity="center_vertical">
+
+			<ImageView
+					android:layout_width="42dp"
+					android:layout_height="37dp"
+					android:layout_marginLeft="19dp"
+					android:src="@drawable/counselor_icon" />
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="19dp"
+					android:text="고객 센터"
+					android:textSize="20dp" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:id="@+id/set1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/setting_box"
+				android:gravity="center_vertical">
+
+			<ImageView
+					android:layout_width="42dp"
+					android:layout_height="37dp"
+					android:layout_marginLeft="19dp"
+					android:src="@drawable/question_icon" />
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="19dp"
+					android:text="자주 묻는 질문"
+					android:textSize="20dp" />
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<include layout="@layout/footer" />
+</RelativeLayout>

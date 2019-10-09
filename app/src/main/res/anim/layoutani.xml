@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	"layoutani.xml" 파일은 FullScreen Mode에서
+	FadeOut Animation 을 동작하기 위한 파일임.
+-->
+
+<layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animation="@anim/fadeout"
+    android:animationOrder="normal"
+    android:delay="30%" />

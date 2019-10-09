@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/thema"
+		android:orientation="vertical">
+
+	<RelativeLayout
+			android:id="@+id/header"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:background="@color/white"
+			android:gravity="center">
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:letterSpacing="0.3"
+				android:text="우산반납"
+				android:textColor="@color/text"
+				android:textSize="32dp" />
+	</RelativeLayout>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginTop="16dp"
+				android:text="보관소 선택"
+				android:textColor="@color/text"
+				android:textSize="20dp" />
+
+		<Button
+				android:layout_width="match_parent"
+				android:layout_height="23dp"
+				android:layout_marginHorizontal="15dp"
+				android:layout_marginTop="10dp"
+				android:background="@color/white" />
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:layout_marginHorizontal="15dp"
+				android:layout_marginTop="27dp"
+				android:background="@drawable/rounded_btn"
+				android:gravity="center"
+				android:text="보관함 이름"
+				android:textColor="@color/text"
+				android:textSize="15dp" />
+	</LinearLayout>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginTop="16dp"
+				android:text="보관함 번호 선택"
+				android:textColor="@color/text"
+				android:textSize="20dp" />
+
+		<Button
+				android:layout_width="match_parent"
+				android:layout_height="23dp"
+				android:layout_marginHorizontal="15dp"
+				android:layout_marginTop="10dp"
+				android:background="@color/white" />
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:layout_marginHorizontal="15dp"
+				android:layout_marginTop="27dp"
+				android:background="@drawable/rounded_btn"
+				android:gravity="center"
+				android:text="보관함 이름"
+				android:textColor="@color/text"
+				android:textSize="15dp" />
+	</LinearLayout>
+
+	<Button
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginHorizontal="15dp"
+			android:layout_marginBottom="20dp"
+			android:background="@drawable/rounded_btn_ok"
+			android:text="반납하기"
+			android:textColor="@color/white"
+			android:textSize="25dp" />
+
+	<include layout="@layout/footer" />
+</LinearLayout>

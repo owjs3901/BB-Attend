@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/thema"
+		android:orientation="vertical">
+
+	<TextView
+			android:id="@+id/header"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:background="@color/white"
+			android:gravity="center"
+			android:letterSpacing="0.3"
+			android:text="보관소 조회"
+			android:textColor="@color/text"
+			android:textSize="32dp" />
+
+	<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/map"
+			android:name="com.google.android.gms.maps.SupportMapFragment"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@+id/footer"
+			android:layout_below="@+id/header" />
+
+	<include layout="@layout/footer" />
+</RelativeLayout>

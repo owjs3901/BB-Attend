@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".DashBoardActivity">
+
+	<RelativeLayout
+			android:id="@+id/header"
+			android:layout_width="match_parent"
+			android:layout_height="64dp"
+			android:gravity="center">
+
+		<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="60dp"
+				android:src="@drawable/logo" />
+	</RelativeLayout>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/header"
+			android:background="@color/thema"
+			android:orientation="vertical">
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="153dp"
+				android:layout_marginHorizontal="18dp"
+				android:layout_marginTop="18dp"
+				android:layout_marginBottom="21dp"
+				android:background="@drawable/rounded_box"
+				android:orientation="vertical">
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+
+					android:layout_margin="9dp"
+					android:layout_marginBottom="5dp"
+					android:text="현재 대여중인 우산"
+					android:textColor="@color/text"
+					android:textSize="20dp" />
+
+			<android.support.v4.view.ViewPager
+					android:id="@+id/viewpager"
+					android:layout_width="match_parent"
+					android:layout_height="68dp" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="153dp"
+				android:layout_marginHorizontal="18dp"
+				android:layout_marginTop="18dp"
+				android:layout_marginBottom="21dp"
+				android:background="@drawable/rounded_box"
+				android:orientation="vertical">
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+
+					android:layout_margin="9dp"
+					android:text="최근 방문한 대여소"
+					android:textColor="@color/text"
+					android:textSize="20dp" />
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="12dp"
+					android:layout_marginBottom="20dp"
+					android:orientation="vertical">
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="153dp"
+				android:layout_marginHorizontal="18dp"
+				android:layout_marginTop="18dp"
+				android:layout_marginBottom="21dp"
+				android:background="@drawable/rounded_box"
+				android:orientation="vertical">
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+
+					android:layout_margin="9dp"
+					android:text="즐겨찾기"
+					android:textColor="@color/text"
+					android:textSize="20dp" />
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="12dp"
+					android:layout_marginBottom="20dp"
+					android:orientation="vertical">
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+
+				<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="- 대여소 1"
+						android:textSize="13dp" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+	<include layout="@layout/footer" />
+</RelativeLayout>
