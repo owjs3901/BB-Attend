@@ -1,36 +1,41 @@
 package fido.umbridge
 
 import Subject
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import fido.umbridge.ble.startBLE
-import java.util.*
-import android.content.Intent
-import android.graphics.Color
 import android.widget.Toast
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.support.v7.app.AppCompatActivity
+import fido.umbridge.ble.load
+import fido.umbridge.ble.nowURL
+import fido.umbridge.ble.startBLE
+import kr.sgasol.totalcert.sgatotalcert.Select_Authenticator_Intent
 import kr.sgasol.totalcert.sgatotalcert.UAF_Registration_FingerM_Intent
 import kr.sgasol.totalcert.sgatotalcert.UAF_Registration_Finger_Intent
 import kr.sgasol.totalcert.sgatotalcert.util.Utility.check_fingerPrint
+import java.util.*
 
 
 val subjectList = ArrayList<Subject>()
-var fido=false;
+var fido = false;
 val map = HashMap<Int, Subject>()
-var nowView:View? = null
+val uuidToName = HashMap<String, Subject>()
+val subToUuid = HashMap<Subject, String>()
+var nowView: View? = null
+var dis: TextView? = null
+var sub: TextView? = null
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        dis = findViewById(R.id.dis)
+        sub = findViewById(R.id.subj)
         startBLE(this)
-
         for (sub in subjectList)
             for (ind in sub.index)
                 map.put(ind, sub);
@@ -42,21 +47,45 @@ class MainActivity : AppCompatActivity() {
                 if (map.containsKey(i * 7 + ic)) {
 
 
-                    val va=map.get(i * 7 + ic)
+                    val va = map.get(i * 7 + ic)
 
-                    if(i * 7 + ic==28){
+                    if (i * 7 + ic == 28) {
                         inc.setBackgroundColor(Color.RED)
-                        nowView=inc
+                        nowView = inc
                     }
                     inc.findViewById<TextView>(R.id.pro).setText(va?.pro)
                     inc.findViewById<TextView>(R.id.sub).setText(va?.name)
                     inc.findViewById<TextView>(R.id.clas).setText(va?.`class`)
+                    inc.setOnClickListener(View.OnClickListener {
+
+                        println("출석기"+nowURL+"ㅈㅈ"+subToUuid.get(va))
+
+                        if (nowURL == subToUuid.get(va)) {
+                            if (!load && !fido) {
+                                Toast.makeText(this, "${va?.name} 과목에 출석을 시도합니다", Toast.LENGTH_LONG).show()
+                                val mIntent = Intent(this, Select_Authenticator_Intent::class.java)
+                                mIntent.putExtra(OPERATION, FIDO_TYPE_AUTH)
+                                mIntent.putExtra(APPID, "http://fido.sgablc.kr:9051/appid")
+                                mIntent.putExtra(AGENTURL, "http://fido.sgablc.kr:9051")
+                                mIntent.putExtra(USERID, "Umbridge_User")
+                                load = true
+                                startActivityForResult(mIntent, AUTH_ACTIVITY_RES)
+                            }
+                        }
+                        else Toast.makeText(this, "${va?.name} 출석기가 주변에 없습니다.", Toast.LENGTH_LONG).show()
+                    })
                 }
                 vv.addView(inc)
             }
         }
     }
-    public fun register(v: View){
+
+    override fun onResume() {
+        super.onResume()
+        load = false
+    }
+
+    public fun register(v: View) {
         var mIntent: Intent? = null
 
 
@@ -81,6 +110,7 @@ class MainActivity : AppCompatActivity() {
 
         startActivityForResult(mIntent, REG_ACTIVITY_RES)
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -104,7 +134,7 @@ class MainActivity : AppCompatActivity() {
             if (requestCode == REG_ACTIVITY_RES) {
                 Toast.makeText(applicationContext, "FIDO 등록에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             } else if (requestCode == AUTH_ACTIVITY_RES) {
-                fido=true;
+                fido = true;
                 nowView?.setBackgroundColor(Color.GREEN)
                 Toast.makeText(applicationContext, "FIDO 인증에 성공하였습니다. 출석 완료", Toast.LENGTH_SHORT).show()
             }

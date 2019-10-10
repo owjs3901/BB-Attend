@@ -40,7 +40,10 @@ class LoadingActivity : AppCompatActivity() {
                     FirebaseFirestore.getInstance().collection("subject").get().addOnCompleteListener(OnCompleteListener {
                         if (it.isSuccessful) {
                             for (document in it.getResult()?.documents!!) {
-                                subjectList.add(document.toObject(Subject::class.java)!!)
+                                val a=document.toObject(Subject::class.java)!!
+                                subjectList.add(a)
+                                uuidToName.put(document.id,a)
+                                subToUuid.put(a,document.id)
                             }
                             setResult(Activity.RESULT_OK)
                         } else

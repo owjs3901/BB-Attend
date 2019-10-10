@@ -2,7 +2,9 @@ package fido.umbridge.ble
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v4.app.ActivityCompat.startActivityForResult
+import android.graphics.Color
+import android.widget.TextView
+import android.widget.Toast
 import com.google.common.base.Charsets
 import fido.umbridge.*
 import kr.sgasol.totalcert.sgatotalcert.Select_Authenticator_Intent
@@ -13,7 +15,7 @@ import java.util.*
 
 
 var b = false
-var load=false;
+var load = false;
 
 var url = ""
 
@@ -56,19 +58,25 @@ public fun startBLE(a: Activity) {
             println("스캔 결과2" + results.size)
             for (r in results) {
                 try {
-                    val st = r.scanRecord?.bytes?.toString(Charsets.UTF_8)
-                    if (nowURL == null) {
-                        nowURL = st?.split("38")?.get(1)
-                    } else {
-                        val mIntent = Intent(a, Select_Authenticator_Intent::class.java)
-                        mIntent.putExtra(OPERATION, FIDO_TYPE_AUTH)
-                        mIntent.putExtra(APPID, "http://fido.sgablc.kr:9051/appid")
-                        mIntent.putExtra(AGENTURL, "http://fido.sgablc.kr:9051")
-                        mIntent.putExtra(USERID, "Umbridge_User")
-                        if(!load){
-                            load=true
-                            a.startActivityForResult(mIntent, AUTH_ACTIVITY_RES)
+
+                    var dd = Math.pow(10.0,((r.txPower - r.rssi) / 20.0))
+                    var dc=((dd/100000000)/10.0)
+                    dis?.setText(dc.toInt().toString())
+                    if (dc < 100) {
+                        val st = r.scanRecord?.bytes?.toString(Charsets.UTF_8)?.split("38")?.get(1)
+
+                        sub?.setText(uuidToName.get(st)?.name)
+                        if (nowURL == null) {
+                            nowURL = st
                         }
+                    } else {
+                        if (fido) {
+                            fido = false
+                            load = false
+                            nowView?.setBackgroundColor(Color.RED)
+                            Toast.makeText(a, "출튀하는 건가요?", Toast.LENGTH_LONG).show()
+                        }
+
                     }
                 } catch (e: UnsupportedEncodingException) {
                     e.printStackTrace()
