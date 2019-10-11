@@ -25,7 +25,7 @@
 			tools:replace="android:icon,android:theme">
 		<meta-data
 				android:name="com.google.android.geo.API_KEY"
-				android:value="AIzaSyD0u_ngOebEvbqK-_Rvb5OM3tm3DYV9-D0" />
+				android:value="@string/app_key" />
 
 		<activity android:name="fido.umbridge.LoginActivity">
 			<intent-filter>
