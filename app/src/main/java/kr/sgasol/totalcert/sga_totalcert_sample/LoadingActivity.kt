@@ -42,7 +42,7 @@ class LoadingActivity : AppCompatActivity() {
                             for (document in it.getResult()?.documents!!) {
                                 val a=document.toObject(Subject::class.java)!!
                                 subjectList.add(a)
-                                uuidToName.put(document.id,a)
+                                uuidToSub.put(document.id,a)
                                 subToUuid.put(a,document.id)
                             }
                             setResult(Activity.RESULT_OK)

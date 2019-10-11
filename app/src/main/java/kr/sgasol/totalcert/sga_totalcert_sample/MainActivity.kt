@@ -11,31 +11,43 @@ import android.widget.TextView
 import android.widget.Toast
 import fido.umbridge.ble.load
 import fido.umbridge.ble.nowURL
+import fido.umbridge.ble.scanner
 import fido.umbridge.ble.startBLE
 import kr.sgasol.totalcert.sgatotalcert.Select_Authenticator_Intent
 import kr.sgasol.totalcert.sgatotalcert.UAF_Registration_FingerM_Intent
 import kr.sgasol.totalcert.sgatotalcert.UAF_Registration_Finger_Intent
 import kr.sgasol.totalcert.sgatotalcert.util.Utility.check_fingerPrint
+import no.nordicsemi.android.support.v18.scanner.ScanCallback
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 val subjectList = ArrayList<Subject>()
 var fido = false;
 val map = HashMap<Int, Subject>()
-val uuidToName = HashMap<String, Subject>()
+val uuidToSub = HashMap<String, Subject>()
+val subToView = HashMap<Subject, MutableList<View>>()
 val subToUuid = HashMap<Subject, String>()
-var nowView: View? = null
+var nowView: List<View> = ArrayList<View>()
 var dis: TextView? = null
 var sub: TextView? = null
 
 class MainActivity : AppCompatActivity() {
+    override fun onDestroy() {
+        super.onDestroy()
+        scanner?.stopScan(object : ScanCallback(){
+
+        })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        nowURL=null
         fido=false
         load=false
-
+        nowView=ArrayList<View>()
+        subToView.clear()
         dis = findViewById(R.id.dis)
         sub = findViewById(R.id.subj)
         startBLE(this)
@@ -52,10 +64,15 @@ class MainActivity : AppCompatActivity() {
 
                     val va = map.get(i * 7 + ic)
 
-                    if (i * 7 + ic == 28) {
-                        inc.setBackgroundColor(Color.RED)
-                        nowView = inc
-                    }
+//                    if (i * 7 + ic == 28) {
+//                        inc.setBackgroundColor(Color.RED)
+//                        nowView = inc
+//                    }
+                    println("있누"+subToView.containsKey(va))
+                    if(subToView.containsKey(va))
+                        subToView.get(va)?.add(inc)
+                    else
+                        subToView.put(va!!, mutableListOf(inc))
                     inc.findViewById<TextView>(R.id.pro).setText(va?.pro)
                     inc.findViewById<TextView>(R.id.sub).setText(va?.name)
                     inc.findViewById<TextView>(R.id.clas).setText(va?.`class`)
@@ -79,6 +96,8 @@ class MainActivity : AppCompatActivity() {
                 vv.addView(inc)
             }
         }
+        nowView?.forEach { it.setBackgroundColor(Color.RED) }
+
     }
 
     override fun onResume() {
@@ -136,7 +155,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "FIDO 등록에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             } else if (requestCode == AUTH_ACTIVITY_RES) {
                 fido = true;
-                nowView?.setBackgroundColor(Color.GREEN)
+                nowView?.forEach { it.setBackgroundColor(Color.GREEN) }
                 Toast.makeText(applicationContext, "FIDO 인증에 성공하였습니다. 출석 완료", Toast.LENGTH_SHORT).show()
             }
         } else if (resultCode == FIDO_RESULT_REGEDINFO) {
