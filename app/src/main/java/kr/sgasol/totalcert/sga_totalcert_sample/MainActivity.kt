@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        fido=false
+        load=false
+
         dis = findViewById(R.id.dis)
         sub = findViewById(R.id.subj)
         startBLE(this)
@@ -57,8 +60,6 @@ class MainActivity : AppCompatActivity() {
                     inc.findViewById<TextView>(R.id.sub).setText(va?.name)
                     inc.findViewById<TextView>(R.id.clas).setText(va?.`class`)
                     inc.setOnClickListener(View.OnClickListener {
-
-                        println("출석기"+nowURL+"ㅈㅈ"+subToUuid.get(va))
 
                         if (nowURL == subToUuid.get(va)) {
                             if (!load && !fido) {

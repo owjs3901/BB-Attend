@@ -47,14 +47,14 @@ class LoadingActivity : AppCompatActivity() {
                             }
                             setResult(Activity.RESULT_OK)
                         } else
-                            Toast.makeText(this@LoadingActivity, "로그인 실패!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@LoadingActivity, "로그인 실패!1", Toast.LENGTH_LONG).show()
                         finish()
                     })
                     return@OnCompleteListener
                 } else
-                    Toast.makeText(this@LoadingActivity, "로그인 실패!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoadingActivity, "로그인 실패!2", Toast.LENGTH_LONG).show()
             } else
-                Toast.makeText(this@LoadingActivity, "로그인 실패!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoadingActivity, "로그인 실패!3", Toast.LENGTH_LONG).show()
             finish()
         })
     }
@@ -70,7 +70,7 @@ class LoadingActivity : AppCompatActivity() {
 
     private fun getPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 100)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_PHONE_STATE), 100)
         }
     }
 

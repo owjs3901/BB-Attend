@@ -62,7 +62,7 @@ public fun startBLE(a: Activity) {
                     var dd = Math.pow(10.0,((r.txPower - r.rssi) / 20.0))
                     var dc=((dd/100000000)/10.0)
                     dis?.setText(dc.toInt().toString())
-                    if (dc < 100) {
+                    if (dc < 70) {
                         val st = r.scanRecord?.bytes?.toString(Charsets.UTF_8)?.split("38")?.get(1)
 
                         sub?.setText(uuidToName.get(st)?.name)
