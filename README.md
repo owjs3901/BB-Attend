@@ -27,3 +27,6 @@ Bio 와 Ble를 이용한 출석 시스템을 개발하였습니다.
   > Nordic의 BLE 수신 라이브러리를 이용하였습니다.
 - 서버(DB)
   > Google의 Firebase 중 Firestore를 사용하였습니다.
+
+
+![](./resource/poster.png)
